@@ -16,7 +16,8 @@
 
 
 5. 	Install python. Conda is highly recommended (Products -> Download -> Python 3.6 version)
-	*Here is the [Link!](https://www.anaconda.com)
+	
+	Here is the [Link!](https://www.anaconda.com)
 
 	
 6.	create a workspace for your robot: create a new "my_workspace" folder.
