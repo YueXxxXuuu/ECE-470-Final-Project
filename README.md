@@ -25,9 +25,9 @@
 
 7.	copy these files into "my_workspace" folder:
 	
-	-vrep/programming/remoteApiBindings/python/python/vrep.py
-	-vrep/programming/remoteApiBindings/python/python/vrepConst.py
-	-vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
+	* vrep/programming/remoteApiBindings/python/python/vrep.py
+	* vrep/programming/remoteApiBindings/python/python/vrepConst.py
+	* vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 	
 	
 8.	copy this python test code (vrep/programming/remoteApiBindings/python/python/simpleTest.py) into "my_workspace"
