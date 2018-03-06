@@ -44,9 +44,9 @@ You should see your robot move, and in the terminal, you should see the joint an
 
 More information can be found in the documentation (e.g., look at "Writing code in and around V-REP"):
 	
-	Here is the [Link!](http://www.coppeliarobotics.com/helpFiles/index.html)
+	http://www.coppeliarobotics.com/helpFiles/index.html
 	
 	
 Commands available to you in the python remote API:
 
-	Here is the [Link!](http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm)
+	http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm
