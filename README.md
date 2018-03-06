@@ -24,6 +24,7 @@
 
 
 7.	copy these files into "my_workspace" folder:
+	
 	-vrep/programming/remoteApiBindings/python/python/vrep.py
 	-vrep/programming/remoteApiBindings/python/python/vrepConst.py
 	-vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
