@@ -5,11 +5,11 @@
 
 	
 2.	From the folder run "./vrep.app/Contents/MacOS/vrep"
-	![image of terminal](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/image_1.png)
+	![image of terminal](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/CheckPoint1/image_1.png)
 
 	
 3.	Drag a robot into the GUI, and remove associated scripts.
-	![image of simulator](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/image_2.png)
+	![image of simulator](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/CheckPoint1/image_2.png)
 
 	
 4.	Save the scene "File->Save Scene As..."
