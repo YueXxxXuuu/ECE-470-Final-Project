@@ -1,11 +1,11 @@
 # ECE_470_Final_Project
 # CheckPoint2
 
-1.	Draw the Schematics of the Jaco Robot using its link length and joint position.
+1.	Draw the Schematics of the Jaco Robot using its link length and joint positions.
 	![image of Schematics1](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/CheckPoint2/Schematics2.JPG)
 
 	
-2.	Label the DH frames and Initial positions onto the Schematics.
+2.	Label the DH frames and Initial position onto the Schematics.
 	![image of Schematics2](https://github.com/YueXxxXuuu/ECE_470_Final_Project/blob/master/CheckPoint2/Schematics2.JPG)
 	
 3. 	Derive the DH parameters using the Schematics we just drew.
