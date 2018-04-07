@@ -1,8 +1,8 @@
 function [result] = forward(theta)
-t1 = theta(1);
+t1 = theta(1)+pi;
 t2 = theta(2);
 t3 = theta(3);
-t4 = theta(4);
+t4 = theta(4)+pi;
 t5 = theta(5);
 t6 = theta(6);
 

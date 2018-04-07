@@ -91,13 +91,20 @@ S6 = revolute(a6,q6);
 S = [S1,S2,S3,S4,S5,S6];
 p_obstacle1 = [0.5;0.3;0.2];
 p_obstacle2 = [0.2;0.3;0.5];
-p_obstacle3 = [0.2;0.5;0.3];
+p_obstacle3 = [-0.2;-0.5;0.3];
 p_robot = [q1 q2 q3 q4 q5 q6];
 r_robot = [0 0 0 0 0 0];
 p_obstacle = [p_obstacle1 p_obstacle2 p_obstacle3];
-r_obstacle = [       0.05        0.07        0.08];
+r_obstacle = [       0.05        0.13        0.16];
 theta_start = [0;0;0;0;0;0];
 theta_goal = [5.4; 1.7; 0.5; 2.10; 2.22; 1.79];
+%theta_goal = [1; 2; 1; 3; 2; 2];
+%theta_goal = [-0.4; 1.6; 0.5; 3; 2; 2];
+
+T_result = forward(theta_goal);
+Tfin = T_base_in_world*T_result(:,:,6);
+pfin = vpa(Tfin(1:3,4),5);
+
 
 %%% set the Dummy Point
 [result, dummy_ball_handle] = vrep.simxGetObjectHandle(clientID, 'Dummy', vrep.simx_opmode_blocking);
@@ -129,18 +136,24 @@ if result ~= vrep.simx_return_ok
 	disp('could not set dummy ball position')
 end
 
+%%% set the Dummy2 Point
+[result, dummy_ball_handle] = vrep.simxGetObjectHandle(clientID, 'Dummy2', vrep.simx_opmode_blocking);
+if result ~= vrep.simx_return_ok
+	disp('could not get dummy ball handle')
+end
+result = vrep.simxSetObjectPosition(clientID,dummy_ball_handle,-1,pfin,vrep.simx_opmode_blocking);
+if result ~= vrep.simx_return_ok
+	disp('could not set dummy ball position')
+end
 
 
-s = path_planning(S, p_robot,r_robot, p_obstacle, r_obstacle, theta_start, theta_goal);
+s = path_planning(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle, theta_start, theta_goal);
 if s == 0
     disp("no path");
 end 
 
-
-
 init_theta = pi;
 [~, Size] = size(s);
-disp(s);
 
 for i = 1:Size
     joint_angles = s(:,i);
@@ -177,10 +190,9 @@ for i = 1:6
 	%%% Wait two seconds
 end
 end
-pause(5)
 end
 
-pause(5)
+pause(3)
 %====================================================================
 % Stop Simulation & Finish session
 %====================================================================

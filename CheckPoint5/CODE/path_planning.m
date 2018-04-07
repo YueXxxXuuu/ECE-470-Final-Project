@@ -1,4 +1,4 @@
-function  s = path_planning(S, p_robot,r_robot, p_obstacle, r_obstacle, theta_start, theta_goal)
+function  s = path_planning(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle, theta_start, theta_goal)
     [Size,~] = size(theta_start);
     T_forward(1).th = theta_start;
     T_forward(1).parent = 666666;
@@ -9,14 +9,14 @@ function  s = path_planning(S, p_robot,r_robot, p_obstacle, r_obstacle, theta_st
     T_backward(1).child = 666666;
     m = 1;
 
-    for count = 1:10
+    for count = 1:100
         c = 1;
         while c == 1
             theta = [rand()*2*pi;rand()*200/180*pi+70/180*pi;rand()*250/180*pi+40/180*pi;rand()*2*pi;rand()*2*pi;rand()*2*pi];
             for i = 1:Size
                theta(i,1) = theta(i,1)- pi;
             end
-            c = collision_point(S, p_robot,r_robot, p_obstacle, r_obstacle, theta);
+            c = collision_point(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle, theta);
         end
         
         min = 100;
@@ -29,8 +29,8 @@ function  s = path_planning(S, p_robot,r_robot, p_obstacle, r_obstacle, theta_st
             end
         end
         
-        collide = collision_line(S, p_robot,r_robot, p_obstacle, r_obstacle,  T_forward(idx).th, theta);
-        if collide == 0
+        collide_forward = collision_line(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle,  T_forward(idx).th, theta);
+        if collide_forward == 0
             T_forward(n + 1).th = theta;
             T_forward(n + 1).parent = idx;
             T_forward(idx).child = n + 1;
@@ -46,8 +46,8 @@ function  s = path_planning(S, p_robot,r_robot, p_obstacle, r_obstacle, theta_st
                idx = i;
             end
         end
-        collide = collision_line(S, p_robot,r_robot, p_obstacle, r_obstacle,  T_backward(idx).th, theta);
-        if collide == 0
+        collide_backward = collision_line(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle,  T_backward(idx).th, theta);
+        if collide_backward == 0
             T_backward(m + 1).th = theta;
             T_backward(m + 1).parent = idx;
             T_backward(idx).child = m + 1;
