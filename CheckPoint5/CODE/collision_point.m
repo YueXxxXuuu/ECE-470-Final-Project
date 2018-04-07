@@ -1,4 +1,4 @@
-function  c = collision_point(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle, theta)
+function  c = collision_point(T_base_in_world, p_obstacle, r_obstacle, theta)
 [~,Size] = size(theta);
 c = zeros(1,Size);
 [~,m] = size(p_obstacle);

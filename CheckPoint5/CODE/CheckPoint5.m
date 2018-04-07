@@ -44,56 +44,12 @@ end
 
 R_base_in_world = getR(euler_angles);
 p_base_in_world = p';
-%%% Get the orientation of base w.r.t the world frame
-[result , euler_angles] = vrep.simxGetObjectOrientation(clientID, jaco_handle, -1, vrep.simx_opmode_blocking);
-if result ~= vrep.simx_return_ok
-	disp('could not get Jaco orientation')
-end
-
-R_base_in_world = getR(euler_angles);
-p_base_in_world = p';
 T_base_in_world = [R_base_in_world, p_base_in_world;0,0,0,1];
 T_base_in_world = vpa(T_base_in_world,4);
 
-%%% First, find the screw axes for all 6 joints
-%%% a,q without fk are w.r.t the base frame
-%%% a_fk and q_fk are w.r.t the world frame
-a1 =  getR( [deg2rad(-1.8000e+02),deg2rad(0),deg2rad(0)]) ;
-a1 = a1(1:3,3);
-q1 = [-5.0000e-02,+1.8190e-12,+1.5675e-01]';
-S1 = revolute(a1,q1);
-
-a2 =  getR( [deg2rad(-9.0000e+01),deg2rad(0),deg2rad(0)]) ;
-a2 = a2(1:3,3);
-q2 = [-5.0000e-02,+0.0000e+00,+2.7550e-01]';
-S2 = revolute(a2,q2);
-
-a3 = getR( [deg2rad(9.0000e+01),deg2rad(0),deg2rad(0)]) ;
-a3 = a3(1:3,3);
-q3 = [-5.0000e-02,-3.7253e-09,+6.8550e-01]';
-S3 = revolute(a3,q3);
-
-a4 = getR( [deg2rad(1.8000e+02),deg2rad(0),deg2rad(0)]) ;
-a4 = a4(1:3,3);
-q4 = [-5.0000e-02,+9.8001e-03,+8.9280e-01]';
-S4 = revolute(a4,q4);
-
-a5 = getR( [deg2rad(1.2500e+02),deg2rad(0),deg2rad(0)]) ;
-a5 = a5(1:3,3);
-q5 = [-5.0000e-02,+4.4049e-02,+9.5863e-01]';
-S5 = revolute(a5,q5);
-
-a6 = getR([deg2rad(7.0000e+01),deg2rad(0),deg2rad(0)]) ;
-a6 = a6(1:3,3);
-q6 = [-5.0000e-02,+1.1771e-01,+9.6839e-01]';
-S6 = revolute(a6,q6);
-
-S = [S1,S2,S3,S4,S5,S6];
 p_obstacle1 = [0.5;0.3;0.2];
 p_obstacle2 = [0.2;0.3;0.5];
 p_obstacle3 = [-0.2;-0.5;0.3];
-p_robot = [q1 q2 q3 q4 q5 q6];
-r_robot = [0 0 0 0 0 0];
 p_obstacle = [p_obstacle1 p_obstacle2 p_obstacle3];
 r_obstacle = [       0.05        0.13        0.16];
 theta_start = [0;0;0;0;0;0];
@@ -147,7 +103,7 @@ if result ~= vrep.simx_return_ok
 end
 
 
-s = path_planning(S, T_base_in_world, p_robot,r_robot, p_obstacle, r_obstacle, theta_start, theta_goal);
+s = path_planning(T_base_in_world, p_obstacle, r_obstacle, theta_start, theta_goal);
 if s == 0
     disp("no path");
 end 

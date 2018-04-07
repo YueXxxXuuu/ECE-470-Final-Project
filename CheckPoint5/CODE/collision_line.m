@@ -1,4 +1,4 @@
-function  s = collision_line(S, T_base_in_world, p_robot, r_robot, p_obstacle, r_obstacle, theta_start, theta_goal)
+function  s = collision_line(T_base_in_world,p_obstacle, r_obstacle, theta_start, theta_goal)
 [~,Size] = size(theta_start);
 c = zeros(1,Size);
 s = zeros(1,Size);
